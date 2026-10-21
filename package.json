@@ -1,0 +1,14 @@
+{
+  "name": "cooper-abroad",
+  "private": true,
+  "type": "module",
+  "description": "Family trip-fund site. No dependencies; Node is only used for local scripts and tests.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate-data.mjs",
+    "estimates": "node scripts/estimates.mjs",
+    "secrets": "node scripts/encrypt-secrets.mjs",
+    "check-secrets": "node scripts/check-secrets.mjs",
+    "serve": "python3 -m http.server 8080"
+  }
+}

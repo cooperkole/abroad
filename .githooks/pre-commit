@@ -1,0 +1,4 @@
+#!/bin/sh
+# Block commits that contain the raw phone number or passcode.
+node scripts/check-secrets.mjs || exit 1
+node scripts/validate-data.mjs >/dev/null 2>&1 || [ ! -f scripts/validate-data.mjs ] || { node scripts/validate-data.mjs; exit 1; }
