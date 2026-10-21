@@ -1,0 +1,20 @@
+name: Validate data and run tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate data/trips.json
+        run: node scripts/validate-data.mjs
+      - name: Run tests (allocation, SMS links, passcode crypto)
+        run: node --test tests/*.test.mjs
+      - name: Check the encrypted secrets file is present
+        run: test -s js/secrets.js && ! grep -qiE 'PHONE_E164|FAMILY_PASSCODE' js/secrets.js
